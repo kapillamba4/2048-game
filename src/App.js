@@ -38,6 +38,11 @@ function App() {
                 Right
               </button>
             </div>
+            {context.gameEnd && (
+              <div className="App-header">
+                Game Ends, No more moves possible
+              </div>
+            )}
           </div>
         )}
       </AppContext.Consumer>

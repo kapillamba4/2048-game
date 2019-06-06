@@ -5,7 +5,8 @@ const originalData = [[2, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
 
 export class AppContextProvider extends Component {
   state = {
-    data: [[2, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+    data: [[2, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+    gameEnd: false
   };
 
   render() {
@@ -13,6 +14,7 @@ export class AppContextProvider extends Component {
       <AppContext.Provider
         value={{
           data: this.state.data,
+          gameEnd: this.state.gameEnd,
           reset: () => {
             this.setState({
               data: originalData
@@ -59,7 +61,7 @@ export class AppContextProvider extends Component {
             }
 
             newData = newData2;
-            const emptyCells = [];
+            let emptyCells = [];
             for (let i = 0; i < newData.length; i++) {
               for (let j = 0; j < newData[i].length; j++) {
                 if (newData[i][j] === 0) {
@@ -80,9 +82,37 @@ export class AppContextProvider extends Component {
                 }
               }
             }
-            this.setState({
-              data: newData
-            });
+
+            emptyCells = [];
+            for (let i = 0; i < newData.length; i++) {
+              for (let j = 0; j < newData[i].length; j++) {
+                if (newData[i][j] === 0) {
+                  emptyCells.push(i * newData.length + j);
+                }
+              }
+            }
+
+            let cntPossibleMoves = 0;
+            for (let i = 0; i < newData.length - 1; i++) {
+              for (let j = 0; j < newData.length - 1; j++) {
+                if (
+                  newData[i][j] === newData[i + 1][j] ||
+                  newData[i][j] === newData[i][j + 1]
+                ) {
+                  ++cntPossibleMoves;
+                }
+              }
+            }
+            if (cntPossibleMoves === 0 && emptyCells.length === 0) {
+              this.setState({
+                data: newData,
+                gameEnd: true
+              });
+            } else {
+              this.setState({
+                data: newData
+              });
+            }
           },
           moveDown: () => {
             let newData = [
@@ -125,7 +155,7 @@ export class AppContextProvider extends Component {
             }
 
             newData = newData2;
-            const emptyCells = [];
+            let emptyCells = [];
             for (let i = 0; i < newData.length; i++) {
               for (let j = 0; j < newData[i].length; j++) {
                 if (newData[i][j] === 0) {
@@ -146,9 +176,37 @@ export class AppContextProvider extends Component {
                 }
               }
             }
-            this.setState({
-              data: newData
-            });
+
+            emptyCells = [];
+            for (let i = 0; i < newData.length; i++) {
+              for (let j = 0; j < newData[i].length; j++) {
+                if (newData[i][j] === 0) {
+                  emptyCells.push(i * newData.length + j);
+                }
+              }
+            }
+
+            let cntPossibleMoves = 0;
+            for (let i = 0; i < newData.length - 1; i++) {
+              for (let j = 0; j < newData.length - 1; j++) {
+                if (
+                  newData[i][j] === newData[i + 1][j] ||
+                  newData[i][j] === newData[i][j + 1]
+                ) {
+                  ++cntPossibleMoves;
+                }
+              }
+            }
+            if (cntPossibleMoves === 0 && emptyCells.length === 0) {
+              this.setState({
+                data: newData,
+                gameEnd: true
+              });
+            } else {
+              this.setState({
+                data: newData
+              });
+            }
           },
           moveRight: () => {
             let newData = [
@@ -191,7 +249,7 @@ export class AppContextProvider extends Component {
             }
 
             newData = newData2;
-            const emptyCells = [];
+            let emptyCells = [];
             for (let i = 0; i < newData.length; i++) {
               for (let j = 0; j < newData[i].length; j++) {
                 if (newData[i][j] === 0) {
@@ -213,9 +271,36 @@ export class AppContextProvider extends Component {
               }
             }
 
-            this.setState({
-              data: newData
-            });
+            emptyCells = [];
+            for (let i = 0; i < newData.length; i++) {
+              for (let j = 0; j < newData[i].length; j++) {
+                if (newData[i][j] === 0) {
+                  emptyCells.push(i * newData.length + j);
+                }
+              }
+            }
+
+            let cntPossibleMoves = 0;
+            for (let i = 0; i < newData.length - 1; i++) {
+              for (let j = 0; j < newData.length - 1; j++) {
+                if (
+                  newData[i][j] === newData[i + 1][j] ||
+                  newData[i][j] === newData[i][j + 1]
+                ) {
+                  ++cntPossibleMoves;
+                }
+              }
+            }
+            if (cntPossibleMoves === 0 && emptyCells.length === 0) {
+              this.setState({
+                data: newData,
+                gameEnd: true
+              });
+            } else {
+              this.setState({
+                data: newData
+              });
+            }
           },
           moveLeft: () => {
             let newData = [
@@ -258,7 +343,7 @@ export class AppContextProvider extends Component {
             }
 
             newData = newData2;
-            const emptyCells = [];
+            let emptyCells = [];
             for (let i = 0; i < newData.length; i++) {
               for (let j = 0; j < newData[i].length; j++) {
                 if (newData[i][j] === 0) {
@@ -280,9 +365,36 @@ export class AppContextProvider extends Component {
               }
             }
 
-            this.setState({
-              data: newData
-            });
+            emptyCells = [];
+            for (let i = 0; i < newData.length; i++) {
+              for (let j = 0; j < newData[i].length; j++) {
+                if (newData[i][j] === 0) {
+                  emptyCells.push(i * newData.length + j);
+                }
+              }
+            }
+
+            let cntPossibleMoves = 0;
+            for (let i = 0; i < newData.length - 1; i++) {
+              for (let j = 0; j < newData.length - 1; j++) {
+                if (
+                  newData[i][j] === newData[i + 1][j] ||
+                  newData[i][j] === newData[i][j + 1]
+                ) {
+                  ++cntPossibleMoves;
+                }
+              }
+            }
+            if (cntPossibleMoves === 0 && emptyCells.length === 0) {
+              this.setState({
+                data: newData,
+                gameEnd: true
+              });
+            } else {
+              this.setState({
+                data: newData
+              });
+            }
           }
         }}
       >
