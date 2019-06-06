@@ -1,24 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import GameContainer from './containers/GameContainer';
+import AppContext from './AppContext';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App-header">2048</div>
+      <AppContext.Consumer>
+        {context => (
+          <div>
+            <button className="reset-btn btn btn-info" onClick={context.reset}>
+              Reset
+            </button>
+            <div className="nav-btn-set">
+              <button
+                className="nam-btn btn btn-primary"
+                onClick={context.moveUp}
+              >
+                Up
+              </button>
+              <button
+                className="down-btn btn btn-primary"
+                onClick={context.moveDown}
+              >
+                Down
+              </button>
+              <button
+                className="left-btn btn btn-primary"
+                onClick={context.moveLeft}
+              >
+                Left
+              </button>
+              <button
+                className="right-btn btn btn-primary"
+                onClick={context.moveRight}
+              >
+                Right
+              </button>
+            </div>
+          </div>
+        )}
+      </AppContext.Consumer>
+      <GameContainer />
     </div>
   );
 }

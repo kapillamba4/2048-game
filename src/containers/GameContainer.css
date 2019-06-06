@@ -1,0 +1,11 @@
+.game-container {
+  background: white;
+  margin: 0 auto;
+}
+
+.game-cell {
+  width: 100px;
+  height: 100px;
+  border: 20px solid #bbada0;
+  font-size: 40px;
+}

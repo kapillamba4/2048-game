@@ -2,14 +2,13 @@
   text-align: center;
   background-color: #282c34;
   min-height: 100vh;
+  .reset-btn {
+    margin: 8px;
+  }
+  .nav-btn-set > * {
+    margin: 8px;
+  }
 }
-.App .reset-btn {
-  margin: 8px;
-}
-.App .nav-btn-set > * {
-  margin: 8px;
-}
-
 .App-header {
   display: flex;
   justify-content: center;
